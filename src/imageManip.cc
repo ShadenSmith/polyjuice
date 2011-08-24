@@ -5,8 +5,8 @@
  * Contains the functionality to manipulate a QImage object from QT by
  * reading/changing the least significant bits of each pixel.
  */
-#include <std::string>
 #include <vector>
+#include <string>
 #include <iostream>
 #include <QImage>
 

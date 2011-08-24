@@ -12,5 +12,8 @@ int main(int argc, char *argv[])
 	// create our GUI object
 	PolyGui G;
 
+	Huffman h;
+	h.readFreqFile();
+
 	return app.exec();
 }
