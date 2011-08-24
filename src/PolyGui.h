@@ -1,3 +1,9 @@
+/* Author: Justin Proffitt
+ * Date: August 23 2011
+ * PolyGui.h
+ *
+ * Class to contain the QT objects that make the GUI for polyjuice.
+ */
 #ifndef POLYGUI_H
 #define POLYGUI_H
 #include <QtGui>
@@ -14,7 +20,7 @@ class PolyGui : public QMainWindow
 	public:
 	PolyGui();
 
-	public slots:
+	public slots: //Functions that will be called on button presses
 	void loadFreqFile();
 	void loadImage();
 	void generateFreq();
@@ -24,6 +30,7 @@ class PolyGui : public QMainWindow
 
 	private:
 	void resizeWindow();
+
 	QWidget window;
 
 	QPushButton *loadFreq;

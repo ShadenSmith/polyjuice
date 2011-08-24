@@ -1,3 +1,10 @@
+/* Author: Justin Proffitt
+ * Date: August 23 2011
+ * 
+ * ImageManip.h
+ *
+ * Header for functions that will manipulate the images within QT.
+ */
 #ifndef IMAGEMANIP_H
 #define IMAGEMANIP_H
 #include <string>

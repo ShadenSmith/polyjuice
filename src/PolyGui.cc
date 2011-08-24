@@ -1,3 +1,10 @@
+/* Author: Justin Proffitt
+ * Date: August 23 2011
+ *
+ * PolyGui.cc
+ * Class implementation of the GUI used for PolyJuice
+ *
+ */
 #include <QObject>
 #include <iostream>
 #include <QtGui>
@@ -5,12 +12,16 @@
 #include <QMainWindow>
 #include <QWidget>
 
-using namespace std;
-
 #include "PolyGui.h"
 #include "imageManip.h"
+
+/* Constructor for PolyGui class. Initializes the QT GUI components
+ * and adds them to the proper layouts and connects the proper signals to
+ * the proper slots.
+ */
 PolyGui::PolyGui()
 {
+	//Set the title, create the layout, and create the button objects.
 	window.setWindowTitle(
 		QApplication::translate("toplevel", "PolyJuice!"));
 	buttonlayout = new QVBoxLayout();
@@ -30,17 +41,21 @@ PolyGui::PolyGui()
 	imageLabel1 = new QLabel;
 	imageLabel2 = new QLabel;
 
+	//Add each button to the innermost layout.
 	buttonlayout->addWidget(loadImg);
 	buttonlayout->addWidget(loadMsg);
 	buttonlayout->addWidget(genFreq);
 	buttonlayout->addWidget(loadFreq);
 	buttonlayout->addWidget(saveImg);
 
+	//Add the button layout and imageLabels to the outer layout. 
 	layout->addLayout(buttonlayout);
 	layout->addWidget(imageLabel1);
 	layout->addWidget(imageLabel2);
 
 	window.setLayout(layout);
+
+	//Connect each signal to the proper slot.
 	QObject::connect(loadFreq, SIGNAL(clicked()), this, SLOT(loadFreqFile()));
 	QObject::connect(genFreq, SIGNAL(clicked()), this, SLOT(generateFreq()));
 	QObject::connect(loadImg, SIGNAL(clicked()), this, SLOT(loadImage()));
@@ -49,17 +64,36 @@ PolyGui::PolyGui()
 
 	window.show();
 }
+
+/* 
+ *
+ *
+ */
 void PolyGui::resizeWindow()
 {
 }
+
+/* loadFreqFile()
+ * Opens a file selection dialogue to allow a non-default frequency file to
+ * be used for encoding or decoding.
+ */
 void PolyGui::loadFreqFile()
 {
-	cout << "loadFreqFile()" << endl;
+	std::cout << "loadFreqFile()" << endl;
 }
+
+/* generateFreq()
+ * Generates a frequency file from the currently loaded message file.
+ */
 void PolyGui::generateFreq()
 {
-	cout << "generateFreq()" << endl;
+	std::cout << "generateFreq()" << endl;
 }
+
+/* saveImage()
+ * Encodes the Message into the currently loaded image and then saves the 
+ * newly 'stegonagraphied' image.
+ */
 void PolyGui::saveImage()
 {
 
@@ -76,12 +110,23 @@ void PolyGui::saveImage()
 
 	imageLabel2->setPixmap(QPixmap::fromImage(image2));
 
-	cout << "saveImage()" << endl;
+	std::cout << "saveImage()" << endl;
 }
+
+/* loadMessage()
+ * Loads a file encoded in ascii to allow a Huffman coding to be generated 
+ * and from that encoding the message to be placed inside the image.
+ *
+ */
 void PolyGui::loadMessage()
 {
-	cout << "loadMessage()" << endl;
+	std::cout << "loadMessage()" << endl;
 }
+
+/* loadImage()
+ * Loads an image that will either have a message injected or extracted
+ * from its pixels. 
+ */
 void PolyGui::loadImage()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,
@@ -101,5 +146,5 @@ void PolyGui::loadImage()
 		imageLabel1->setPixmap(QPixmap::fromImage(image1));
 		imageLabel2->setPixmap(QPixmap::fromImage(image2));
 	}
-	cout << "loadImage()" << endl;
+	std::cout << "loadImage()" << endl;
 }
